@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -7,6 +7,7 @@ export default function HomePage() {
   const [bubbleCount, setBubbleCount] = useState(15)
   const [showModal, setShowModal] = useState(false)
   const [bubblesMultiplied, setBubblesMultiplied] = useState(false)
+  const audioRef = useRef(null)
 
   useEffect(() => {
     const fullText = "Pastor Cristóvão Carriço"
@@ -49,7 +50,14 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+      <div className="fixed top-12 md:top-12 top-52 left-1/2 transform -translate-x-1/2 z-50 opacity-40 hover:opacity-90 transition-opacity">
+        <p className="text-white text-sm font-light text-center tracking-wide">
+          Clique play para abençoar sua experiência
+        </p>
+      </div>
+
       <audio
+        ref={audioRef}
         autoPlay
         loop
         preload="auto"
